@@ -166,7 +166,7 @@
             const isTitular = person.type === 'Titular';
             let personLabel = `${person.type} (${person.age} anos)`;
             if (isTitular) {
-                personLabel += ` <span class="text-xs font-normal text-red-600">(Subsídio da empresa aplicado)</span>`;
+                personLabel += ` <span class="text-xs font-normal text-red-600">(Subsídio da empresa aplicado no plano base - Amil Bronze)</span>`;
             }
             tableRows += `<tr class="border-b"><td class="p-2 font-semibold text-gray-800">${personLabel}</td>`;
             const subsidy = isTitular ? getPriceForAge(person.age, 'Amil Bronze QC', pricingData) * 0.95 : 0;
