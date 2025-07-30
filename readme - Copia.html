@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo à Amil: Simule seu Novo Plano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .table-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 py-10">
+
+    <div class="max-w-6xl w-full bg-white rounded-xl shadow-2xl overflow-hidden mx-auto ">
+        
+        <div class="grid grid-cols-2 gap-4 p-4 bg-black rounded-t-xl items-center">
+            <div class="flex justify-center">
+                <img src="https://i.ibb.co/CpNCw0qY/logo-trigueiro-fontes.png" alt="Logo Trigueiro Fontes" class="h-12 w-auto">
+            </div>
+            <div class="flex justify-center">
+                <img src="https://i.ibb.co/DgfW63kz/5.png" alt="Logo Agnus" class="h-20 w-auto">
+            </div>
+        </div>
+
+        <div class="p-8 md:p-10">
+            <header class="text-center mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-blue-800">
+                    Bem-vindo(a) à Amil!
+                </h1>
+                <p class="text-lg text-gray-700 mt-3">
+                    Simule e escolha o plano ideal para você e sua família.
+                </p>
+            </header>
+            
+            <div class="text-center mb-8">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+                    Temos uma ótima notícia! Em breve, nosso benefício de saúde será administrado pela Amil. Para ajudar na sua decisão, utilize a ferramenta abaixo para conhecer os novos planos e simular seus custos mensais.
+                </p>
+            </div>
+            
+            <div id="cost-simulator" class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 text-center mb-1">Passo 1: Simule Seus Novos Custos</h2>
+                <p class="text-center text-gray-600 mb-6">Insira as idades para ver os valores de cada plano Amil.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="holder-age" class="block text-sm font-medium text-gray-700">Sua idade (Titular)</label>
+                        <input type="number" id="holder-age" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Ex: 35">
+                    </div>
+
+                    <div id="dependents-section">
+                        <label class="block text-sm font-medium text-gray-700">Idade dos dependentes (se houver)</label>
+                        <div id="dependents-list" class="space-y-2 mt-1"></div>
+                        <button id="add-dependent-btn" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold">+ Adicionar dependente</button>
+                    </div>
+                </div>
+                
+                <button id="calculate-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+                    Simular Custos
+                </button>
+
+                <div id="simulation-results" class="mt-6 hidden"></div>
+            </div>
+
+            <div id="network-viewer" class="bg-indigo-50 p-6 rounded-lg border border-indigo-200 mt-8">
+                <h2 class="text-2xl font-bold text-gray-800 text-center mb-1">Passo 2: Compare as Redes</h2>
+                <p class="text-center text-gray-600 mb-6">Clique no botão abaixo para ver um comparativo detalhado da rede credenciada em uma nova aba.</p>
+                <div class="mt-4">
+                     <button id="view-comparison-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                        Clique e veja o comparativo de rede
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 text-white p-6 rounded-lg text-center shadow-md mt-10">
+                <h2 class="text-xl font-bold mb-1">Ficou com dúvidas ou já decidiu?</h2>
+                <p class="text-gray-100">Fale com o RH para validar os detalhes ou, se preferir, chame-nos diretamente no WhatsApp!</p>
+                
+                <div class="mt-4">
+                    <a href="https://wa.me/551120945454?text=Ol%C3%A1%2C%0A%0AQueria%20tirar%20algumas%20d%C3%BAvidas%20sobre%20a%20mudan%C3%A7a%20da%20Sami%20para%20a%20Amil.%0A%0ASomos%20da%20Trigueiro%20Fontes."
+                       target="_blank"
+                       class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12.04 2.012c-5.524 0-10 4.476-10 10.002 0 1.75.45 3.406 1.255 4.842l-1.25 4.143 4.26-1.233a9.924 9.924 0 0 0 4.735 1.218h.002c5.524 0 10-4.476 10-10.002s-4.476-10-10-10.002zm0 18.232h-.002a8.162 8.162 0 0 1-4.14-1.203l-.3-.176-3.055.882.898-2.982-.192-.312a8.138 8.138 0 0 1-1.254-4.397c0-4.52 3.66-8.184 8.18-8.184 2.22 0 4.28.87 5.78 2.373 1.5 1.504 2.37 3.562 2.37 5.782.002 4.52-3.66 8.182-8.18 8.182zm4.8-6.13c-.26-.132-1.542-.76-1.782-.846-.24-.086-.414-.132-.59.132-.174.262-.672.845-.824 1.01-.152.162-.3.18-.56.06-.26-.12-.48-.21-.73-.33-.5-.24-.96-.54-1.36-.9-.32-.29-.58-.52-.79-.81-.2-.28-.27-.41-.4-.53-.13-.12-.27-.18-.4-.25-.13-.07-.28-.09-.42-.09-.14 0-.37.01-.54.02-.17.01-.43.02-.65.03-.22.01-.58.05-.87.32-.29.27-.99.96-.99 2.34 0 1.38.99 2.72 1.14 2.91.15.19 1.98 3.03 4.8 4.26.68.29 1.22.46 1.64.59.75.22 1.42.19 1.95.11.59-.08 1.54-.63 1.76-1.23.22-.6.22-1.14.15-1.23-.07-.09-.26-.15-.52-.28z"/>
+                        </svg>
+                        Fale conosco no WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    const pricingData = {
+      "Amil Bronze QC":  [ { ageRange: [0, 18], price: 185.36 }, { ageRange: [19, 23], price: 251.72 }, { ageRange: [24, 28], price: 295.49 }, { ageRange: [29, 33], price: 295.49 }, { ageRange: [34, 38], price: 295.49 }, { ageRange: [39, 43], price: 330.06 }, { ageRange: [44, 48], price: 455.81 }, { ageRange: [49, 53], price: 544.24 }, { ageRange: [54, 58], price: 782.62 }, { ageRange: [59, 999], price: 1109.76 } ],
+      "Amil Prata QC":  [ { ageRange: [0, 18], price: 332.83 }, { ageRange: [19, 23], price: 389.41 }, { ageRange: [24, 28], price: 475.08 }, { ageRange: [29, 33], price: 570.10 }, { ageRange: [34, 38], price: 598.61 }, { ageRange: [39, 43], price: 658.47 }, { ageRange: [44, 48], price: 823.09 }, { ageRange: [49, 53], price: 905.40 }, { ageRange: [54, 58], price: 1131.75 }, { ageRange: [59, 999], price: 1980.56 } ],
+      "Amil Prata QP":  [ { ageRange: [0, 18], price: 369.45 }, { ageRange: [19, 23], price: 432.26 }, { ageRange: [24, 28], price: 527.36 }, { ageRange: [29, 33], price: 632.83 }, { ageRange: [34, 38], price: 664.47 }, { ageRange: [39, 43], price: 730.92 }, { ageRange: [44, 48], price: 913.65 }, { ageRange: [49, 53], price: 1005.02 }, { ageRange: [54, 58], price: 1256.28 }, { ageRange: [59, 999], price: 2198.49 } ],
+      "Amil Ouro QC":   [ { ageRange: [0, 18], price: 378.75 }, { ageRange: [19, 23], price: 443.14 }, { ageRange: [24, 28], price: 540.63 }, { ageRange: [29, 33], price: 648.76 }, { ageRange: [34, 38], price: 681.20 }, { ageRange: [39, 43], price: 749.32 }, { ageRange: [44, 48], price: 936.65 }, { ageRange: [49, 53], price: 1030.32 }, { ageRange: [54, 58], price: 1287.90 }, { ageRange: [59, 999], price: 2253.83 } ],
+      "Amil Ouro QP":   [ { ageRange: [0, 18], price: 420.42 }, { ageRange: [19, 23], price: 491.89 }, { ageRange: [24, 28], price: 600.11 }, { ageRange: [29, 33], price: 720.13 }, { ageRange: [34, 38], price: 756.14 }, { ageRange: [39, 43], price: 831.75 }, { ageRange: [44, 48], price: 1039.69 }, { ageRange: [49, 53], price: 1143.66 }, { ageRange: [54, 58], price: 1429.58 }, { ageRange: [59, 999], price: 2501.77 } ],
+      "Platinum R1 QP": [ { ageRange: [0, 18], price: 492.91 }, { ageRange: [19, 23], price: 576.70 }, { ageRange: [24, 28], price: 703.57 }, { ageRange: [29, 33], price: 844.28 }, { ageRange: [34, 38], price: 886.49 }, { ageRange: [39, 43], price: 975.14 }, { ageRange: [44, 48], price: 1218.93 }, { ageRange: [49, 53], price: 1340.82 }, { ageRange: [54, 58], price: 1676.03 }, { ageRange: [59, 999], price: 2933.05 } ],
+      "Platinum R2 QP": [ { ageRange: [0, 18], price: 497.80 }, { ageRange: [19, 23], price: 582.43 }, { ageRange: [24, 28], price: 710.56 }, { ageRange: [29, 33], price: 852.67 }, { ageRange: [34, 38], price: 895.30 }, { ageRange: [39, 43], price: 984.83 }, { ageRange: [44, 48], price: 1231.04 }, { ageRange: [49, 53], price: 1354.14 }, { ageRange: [54, 58], price: 1692.68 }, { ageRange: [59, 999], price: 2962.19 } ]
+    };
+    const plans = ["Amil Bronze QC", "Amil Prata QC", "Amil Prata QP", "Amil Ouro QC", "Amil Ouro QP", "Platinum R1 QP", "Platinum R2 QP"];
+
+    const holderAgeInput = document.getElementById('holder-age');
+    const addDependentBtn = document.getElementById('add-dependent-btn');
+    const dependentsList = document.getElementById('dependents-list');
+    const calculateBtn = document.getElementById('calculate-btn');
+    const simulationResultsDiv = document.getElementById('simulation-results');
+    const viewComparisonBtn = document.getElementById('view-comparison-btn');
+    
+    let dependentCount = 0;
+
+    addDependentBtn.addEventListener('click', addDependentInput);
+    calculateBtn.addEventListener('click', calculateAndDisplayCosts);
+    viewComparisonBtn.addEventListener('click', () => {
+        const comparisonUrl = 'http://app.cotaco.es/cotacoes/01985baa-799a-7582-a1c6-808e41e76486?d=comparativo';
+        window.open(comparisonUrl, '_blank');
+    });
+
+    function addDependentInput() {
+        dependentCount++;
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-2 mt-2';
+        div.innerHTML = `<input type="number" placeholder="Idade do dependente ${dependentCount}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm"><button class="remove-dependent-btn text-red-500 hover:text-red-700 font-bold px-2">&times;</button>`;
+        dependentsList.appendChild(div);
+        div.querySelector('.remove-dependent-btn').addEventListener('click', () => div.remove());
+    }
+
+    function getPriceForAge(age, planName, data) {
+        if (age === null || age < 0 || !data[planName]) return 0;
+        const tier = data[planName].find(p => age >= p.ageRange[0] && age <= p.ageRange[1]);
+        return tier ? tier.price : 0;
+    }
+
+    function formatCurrency(value) {
+        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function calculateAndDisplayCosts() {
+        const holderAge = parseInt(holderAgeInput.value, 10) || null;
+        if (!holderAge) {
+            alert('Por favor, insira a idade do titular.');
+            return;
+        }
+        const dependentAgeInputs = dependentsList.querySelectorAll('input');
+        const dependentAges = Array.from(dependentAgeInputs).map(input => parseInt(input.value, 10) || 0).filter(age => age > 0);
+        const totals = plans.reduce((acc, plan) => ({ ...acc, [plan]: 0 }), {});
+        let tableRows = '';
+        const allAges = [ {type: 'Titular', age: holderAge}, ...dependentAges.map((age, i) => ({type: `Dependente ${i+1}`, age}))];
+        
+        allAges.forEach(person => {
+            const isTitular = person.type === 'Titular';
+            let personLabel = `${person.type} (${person.age} anos)`;
+            if (isTitular) {
+                personLabel += ` <span class="text-xs font-normal text-red-600">(Subsídio da empresa aplicado)</span>`;
+            }
+            tableRows += `<tr class="border-b"><td class="p-2 font-semibold text-gray-800">${personLabel}</td>`;
+            const subsidy = isTitular ? getPriceForAge(person.age, 'Amil Bronze QC', pricingData) * 0.95 : 0;
+            plans.forEach(planName => {
+                const fullPrice = getPriceForAge(person.age, planName, pricingData);
+                let finalPrice;
+                if (isTitular) {
+                    if (planName === 'Amil Bronze QC') {
+                        finalPrice = fullPrice * 0.05;
+                    } else {
+                        finalPrice = fullPrice - subsidy;
+                    }
+                } else {
+                    finalPrice = fullPrice;
+                }
+                totals[planName] += finalPrice;
+                tableRows += `<td class="p-2 text-center text-sm">${formatCurrency(finalPrice)}</td>`;
+            });
+            tableRows += `</tr>`;
+        });
+        
+        const resultHTML = `
+            <h3 class="text-xl font-bold text-gray-800 text-center mb-4">Custo Mensal para o Colaborador</h3>
+            <div class="overflow-x-auto table-fade-in">
+                <table class="w-full text-sm text-left text-gray-700 bg-white rounded-lg shadow">
+                    <thead class="bg-gray-200 text-xs uppercase">
+                        <tr>
+                            <th class="p-2">Beneficiário</th>
+                            ${plans.map(p => `<th class="p-2 text-center font-medium">${p}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tableRows}
+                        <tr class="bg-gray-800 text-white font-bold">
+                            <td class="p-3">CUSTO TOTAL MENSAL</td>
+                            ${plans.map(p => `<td class="p-3 text-center text-base">${formatCurrency(totals[p])}</td>`).join('')}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>`;
+        
+        simulationResultsDiv.innerHTML = resultHTML;
+        simulationResultsDiv.classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
